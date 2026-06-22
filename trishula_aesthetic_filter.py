@@ -185,9 +185,10 @@ def scan_file(filepath: Path) -> dict:
         # 5. Jargon
         for jg in BUSINESS_JARGON:
             if re.search(jg, line_lower):
+                clean_jg = jg.replace(r'\b', '')
                 results["violations"].append(Violation(
                     line_num, line.strip(), "jargon",
-                    f"Business/marketing jargon tell: '{jg.replace(r'\\b', '')}'", 2
+                    f"Business/marketing jargon tell: '{clean_jg}'", 2
                 ))
 
         # 6. Meta-commentary
